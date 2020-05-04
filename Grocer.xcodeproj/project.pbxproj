@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90DE46695F443E9547096199 /* Pods_Grocer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */; };
 		DCE925D6246094A000EA6A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE925D5246094A000EA6A5E /* AppDelegate.swift */; };
 		DCE925D8246094A000EA6A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE925D7246094A000EA6A5E /* SceneDelegate.swift */; };
 		DCE925E0246094A000EA6A5E /* Grocer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCE925DE246094A000EA6A5E /* Grocer.xcdatamodeld */; };
@@ -25,6 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.debug.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.debug.xcconfig"; sourceTree = "<group>"; };
+		AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.release.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.release.xcconfig"; sourceTree = "<group>"; };
+		D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE925D2246094A000EA6A5E /* Grocer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grocer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE925D5246094A000EA6A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE925D7246094A000EA6A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,17 +53,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90DE46695F443E9547096199 /* Pods_Grocer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		361B507A0C2201033D643D20 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A308CA5CEE22BC129D406D20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */,
+				AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DCE925C9246094A000EA6A5E = {
 			isa = PBXGroup;
 			children = (
 				DCE925D4246094A000EA6A5E /* Grocer */,
 				DCE925D3246094A000EA6A5E /* Products */,
+				A308CA5CEE22BC129D406D20 /* Pods */,
+				361B507A0C2201033D643D20 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,9 +166,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCE925E9246094A200EA6A5E /* Build configuration list for PBXNativeTarget "Grocer" */;
 			buildPhases = (
+				A76BFFA162C3B11CF48660A1 /* [CP] Check Pods Manifest.lock */,
 				DCE925CE246094A000EA6A5E /* Sources */,
 				DCE925CF246094A000EA6A5E /* Frameworks */,
 				DCE925D0246094A000EA6A5E /* Resources */,
+				7D10E0AF4B42F1D187528F53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +226,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D10E0AF4B42F1D187528F53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Grocer/Pods-Grocer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Grocer/Pods-Grocer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grocer/Pods-Grocer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A76BFFA162C3B11CF48660A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Grocer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DCE925CE246094A000EA6A5E /* Sources */ = {
@@ -350,6 +419,7 @@
 		};
 		DCE925EA246094A200EA6A5E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -369,6 +439,7 @@
 		};
 		DCE925EB246094A200EA6A5E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
