@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreLocation
 
 class StoreListTableViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var currentLocation: CLLocation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("LIST VIEW DID LOAD")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

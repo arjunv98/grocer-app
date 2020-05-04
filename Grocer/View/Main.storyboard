@@ -161,7 +161,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mainView" destination="y9N-bY-TPV" id="OUs-wM-iFn"/>
                         <outlet property="toggleButton" destination="CUF-EB-vfL" id="dAj-xM-1vo"/>
                     </connections>
                 </viewController>
