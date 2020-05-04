@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import RealmSwift
+
+class Store: Object {
+    @objc dynamic var name = ""
+    let shoppingList = List<Ingredient>()
+    @objc dynamic var location: Location?
+    @objc dynamic var isSaved = false
+}
+

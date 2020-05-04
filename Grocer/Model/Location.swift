@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import RealmSwift
+
+class Location: Object {
+    @objc dynamic var latitude = 0.0
+    @objc dynamic var longitude = 0.0
+    @objc dynamic var address = ""
+}

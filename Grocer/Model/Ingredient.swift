@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import RealmSwift
+
+class Ingredient: Object {
+    @objc dynamic var name = ""
+    @objc dynamic var image: Data? = nil
+    @objc dynamic var isChecked = false
+}
