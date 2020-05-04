@@ -20,9 +20,9 @@ class StoresParentViewController: UIViewController {
     /*
      * Variables
      */
-    var currentLocation: CLLocation = CLLocation(latitude: 34.0224, longitude: -118.2851)
+    var currentLocation: CLLocation = CLLocation(latitude: 34.0224, longitude: -118.2851) // default location is USC
     var locationManager = CLLocationManager()
-    
+    // exposed view controller variables
     private lazy var mapViewController: StoreMapViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         var viewController = storyboard.instantiateViewController(identifier: "StoreMapViewController") as! StoreMapViewController
@@ -37,17 +37,16 @@ class StoresParentViewController: UIViewController {
         self.addView(asChildViewController: viewController)
         return viewController
     }()
-    
-    private var tableViewActive = true
-    var stores = try! Realm().objects(Store.self)
+    private var tableViewActive = true // used to toggle between table and map views
+    var stores = try! Realm().objects(Store.self) // access to Store DB
     
     
     /*
-     * viewDidLoad
+     * viewDidLoad - Initial view load
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("PARENT VIEW DID LOAD")
+        print("--- PARENT VIEW DID LOAD ---")
         
         // get realm file address
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -58,8 +57,8 @@ class StoresParentViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
-            print("** REQUESTING NEW LOCATION **")
-            locationManager.requestLocation()
+            print("* LOCATION AUTHORIZED *")
+            requestCurrentLocation() // begin receiving current location
         }
         
         // load view
@@ -73,6 +72,7 @@ class StoresParentViewController: UIViewController {
      * didTapButton - Toggle between table view and map view of stores
      */
     @IBAction func didTapButton(_ sender: Any) {
+        print("* BUTTON TAPPED *")
         tableViewActive = !tableViewActive
         updateView()
     }
@@ -128,18 +128,31 @@ extension StoresParentViewController {
      * updateView - Update parent view based on button toggle
      */
     private func updateView() {
-        // update current location in parent and child view controllers
-        getCurrentLocation()
-        updateChildLocations()
+        print("*** UPDATE PARENT VIEW ***")
         
-        // Search for nearby food markets and update Store DB
+        // Search for food markets and update Store DB
         searchForFoodMarket()
         
+        // update current location in child view controllers
+        updateChildLocations()
+        
+        for store in stores {
+            print(store.name)
+        }
+        // Search for nearby food markets and update Store DB
+        searchForFoodMarket()
+        for store in stores {
+            print(store.name)
+        }
+        
         if tableViewActive {
+            print("** SWITCH TO TABLE **")
             removeView(asChildViewController: mapViewController)
             addView(asChildViewController: tableViewController)
+//            tableViewController.updateView()
             toggleButton.title = "Map"
         } else {
+            print("** SWITCH TO MAP **")
             removeView(asChildViewController: tableViewController)
             addView(asChildViewController: mapViewController)
             mapViewController.updateView()
@@ -156,6 +169,7 @@ extension StoresParentViewController {
      * searchForFoodMarket - Searches for food markets in 5km radius of current location
      */
     private func searchForFoodMarket() {
+        print("** SEARCH FOR FOOD MARKETS **")
         let request = MKLocalSearch.Request()
         
         // only interested in food markets
@@ -181,6 +195,7 @@ extension StoresParentViewController {
      * handleSearchError - Presents error alert on search error
      */
     private func handleSearchError(_ error: Error) {
+        print("!!! SEARCH ERROR !!!")
         let message = "\(error.localizedDescription)\n\nPlease try again later"
         let alert = UIAlertController(title: "An Error Occurred", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -213,6 +228,8 @@ extension StoresParentViewController {
                 realm.add(store)
             }
         }
+        mapViewController.updateView()
+//        tableViewController.updateView()
     }
 }
 
@@ -252,23 +269,22 @@ extension StoresParentViewController: CLLocationManagerDelegate {
      * locationManager(_:didUpdateLocations:) - Called when current location is requested and updated
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("** LOCATION MANAGER UPDATE CALLED **")
         let location = locations.last! as CLLocation
         
-        // Set current location on parent and child view controllers
+        // Set current location
         currentLocation = location
-        updateChildLocations()
         
-        // Set latitude, longitude, and zoom
-//        let latitude = location.coordinate.latitude
-//        let longitude = location.coordinate.longitude
-//        let span = MKCoordinateSpan(latitudeDelta: 0.050, longitudeDelta: 0.050)
-//        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
+        // Update view
+        updateView()
     }
     
     /*
      * locationManager(_:didFailWithError:) - Called when failure to retrieve location data
      */
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("!!! LOCATION ERROR !!!")
+        currentLocation = CLLocation(latitude: 34.0224, longitude: -118.2851) // USC
         let message = "\(error.localizedDescription)\n\nUnable to retrieve location"
         let alert = UIAlertController(title: "An Error Occurred", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -276,20 +292,21 @@ extension StoresParentViewController: CLLocationManagerDelegate {
     }
     
     /*
-     * getCurrentLocation - Retrieves current location from locationManager and updates currentLocation
+     * requestCurrentLocation - Begins location requests, or sets currentLocation to default
      */
-    func getCurrentLocation() {
+    func requestCurrentLocation() {
         let status = CLLocationManager.authorizationStatus()
         
         if status == .denied || status == .restricted || !CLLocationManager.locationServicesEnabled() {
-            print("*** SET TO DEFAULT LOCATION ***")
+            print("* SET TO DEFAULT LOCATION *")
             currentLocation = CLLocation(latitude: 34.0224, longitude: -118.2851) // USC
         } else if status == .notDetermined {
             // Request authorization if undetermined
+            print("* UNDETERMINED LOCATION *")
             locationManager.requestWhenInUseAuthorization()
         } else {
-            print("** REQUESTING NEW LOCATION **")
-            locationManager.requestLocation()
+            print("* REQUESTING CURRENT LOCATION *")
+            locationManager.startUpdatingLocation()
         }
     }
     
@@ -297,7 +314,7 @@ extension StoresParentViewController: CLLocationManagerDelegate {
      * updateChildLocations - Updates currentLocation in both child view controllers
      */
     func updateChildLocations() {
-        print("** UPDATE LOCATION TO (\(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)) **")
+        print("** UPDATE CHILD LOCATIONS TO (\(currentLocation.coordinate.latitude), \(currentLocation.coordinate.longitude)) **")
         mapViewController.currentLocation = currentLocation
         tableViewController.currentLocation = currentLocation
     }

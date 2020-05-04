@@ -11,11 +11,20 @@ import CoreLocation
 
 class StoreListTableViewController: UITableViewController {
 
+    /*
+    * IB Outlets
+    */
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    var currentLocation: CLLocation!
+    /*
+    * Variables
+    */
+    var currentLocation: CLLocation! // updated from parent
     
+    /*
+    * viewDidLoad - Initial view load
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LIST VIEW DID LOAD")

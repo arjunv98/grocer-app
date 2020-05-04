@@ -9,7 +9,19 @@
 import UIKit
 
 class RecipesTableViewController: UITableViewController {
+    /*
+     * IB Outlets
+     */
+    
+    
+    /*
+    * Variables
+    */
 
+    
+    /*
+    * viewDidLoad - Initial view load
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
 

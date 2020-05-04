@@ -6,7 +6,6 @@
 //  Copyright © 2020 Arjun Viswanathan. All rights reserved.
 //
 
-import Foundation
 import RealmSwift
 
 class Ingredient: Object {
