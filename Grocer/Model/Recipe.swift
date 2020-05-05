@@ -8,6 +8,9 @@
 
 import RealmSwift
 
+/*
+ * Recipe - Class to store recipe objects containing multiple Ingredients
+ */
 class Recipe: Object {
     @objc dynamic var name = ""
     @objc dynamic var image: Data? = nil

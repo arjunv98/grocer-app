@@ -22,8 +22,8 @@ class StoreMapViewController: UIViewController {
     */
     var currentLocation: CLLocation! // updated from parent
     var locationManager = CLLocationManager()
-    var stores = try! Realm().objects(Store.self) // access to Store DB
-    private var annotations = [MKAnnotation]()
+    let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+    private var annotations = [StoreAnnotation]()
     
     /*
      * viewDidLoad - Initial view load
@@ -31,18 +31,9 @@ class StoreMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MAP VIEW DID LOAD")
-
-//        locationManager.delegate = self
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.distanceFilter = 100
-//        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-//        locationManager.startUpdatingLocation()
         
-//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-//            currentLocation = locationManager.location
-//        } else {
-//            currentLocation = CLLocation(latitude: 34.0224, longitude: -118.2851)
-//        }
+        mapView.delegate = self
+        mapView.register(StoreMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         updateView()
         mapView.showsUserLocation = true
@@ -53,11 +44,6 @@ class StoreMapViewController: UIViewController {
      */
     func updateView() {
         print("*** UPDATE MAP VIEW ***")
-        print("*(\(currentLocation.coordinate.latitude),\(currentLocation.coordinate.longitude))*")
-        stores = try! Realm().objects(Store.self)
-        for name in stores {
-            print(name.name)
-        }
         updateAnnotations()
         let span = MKCoordinateSpan(latitudeDelta: 0.050, longitudeDelta: 0.050)
         let region = MKCoordinateRegion(center: currentLocation.coordinate, span: span)
@@ -70,31 +56,39 @@ class StoreMapViewController: UIViewController {
     func updateAnnotations() {
         print("** UPDATE MAP ANNOTATIONS **")
         mapView.removeAnnotations(annotations)
+        
+        let stores = try! Realm(configuration: configuration).objects(Store.self)
+        // create list of custom storeAnnotation objects
         annotations = stores.map { store in
-            let annotation = MKPointAnnotation()
-            let storeCoordinate = CLLocationCoordinate2D(latitude: store.location!.latitude, longitude: store.location!.longitude)
-            annotation.coordinate = storeCoordinate
-            annotation.title = store.name
+            let coordinate = CLLocationCoordinate2D(latitude: store.location!.latitude, longitude: store.location!.longitude)
+            let name = store.name
+            let distance = currentLocation.distance(from: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
+            let annotation = StoreAnnotation(coordinate: coordinate, name: name, distance: distance, store: store)
+            
             return annotation
         }
+        
         mapView.addAnnotations(annotations)
-        mapView.showAnnotations(annotations, animated: true)
+//        mapView.showAnnotations(annotations, animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "MapStoreDetailSegue" {
+            let controller = segue.destination as! StoreDetailViewController
+            let storeAnnotation = sender as! StoreAnnotation
+            controller.selectedAnnotation = storeAnnotation
+        }
     }
-    */
 
 }
 
-extension StoreMapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        // todo
-        return nil
+extension StoreMapViewController: MKMapViewDelegate {    
+    /*
+     * mapView(_:annotationView:calloutAccessoryControlTapped:)
+     */
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let storeAnnotation = view.annotation as? StoreAnnotation {
+            performSegue(withIdentifier: "MapStoreDetailSegue", sender: storeAnnotation)
+        }
     }
 }

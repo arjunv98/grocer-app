@@ -8,6 +8,9 @@
 
 import RealmSwift
 
+/*
+ * Store - Class to store Store objects, with Ingredient lists and a Location object
+ */
 class Store: Object {
     @objc dynamic var name = ""
     let shoppingList = List<Ingredient>()

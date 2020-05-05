@@ -38,7 +38,7 @@ class StoresParentViewController: UIViewController {
         return viewController
     }()
     private var tableViewActive = true // used to toggle between table and map views
-    var stores = try! Realm().objects(Store.self) // access to Store DB
+    let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     
     
     /*
@@ -135,15 +135,9 @@ extension StoresParentViewController {
         
         // update current location in child view controllers
         updateChildLocations()
-        
-        for store in stores {
-            print(store.name)
-        }
+
         // Search for nearby food markets and update Store DB
         searchForFoodMarket()
-        for store in stores {
-            print(store.name)
-        }
         
         if tableViewActive {
             print("** SWITCH TO TABLE **")
@@ -208,7 +202,7 @@ extension StoresParentViewController {
     private func updateStores(mapItems: [MKMapItem]) {
         print("*** UPDATE STORE LIST ***")
         let mapItems = mapItems
-        let realm = try! Realm()
+        let realm = try! Realm(configuration: configuration)
         let oldStores = realm.objects(Store.self).filter("isSaved == false")
         try! realm.write {
             for store in oldStores {
