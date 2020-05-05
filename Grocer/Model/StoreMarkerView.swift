@@ -20,7 +20,7 @@ class StoreMarkerView: MKMarkerAnnotationView {
             canShowCallout = true
             calloutOffset = CGPoint(x: -5, y: 5)
             rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-            
+            markerTintColor = annotation.markerTintColor
             if let letter = annotation.name?.first {
                 glyphText = String(letter)
             }

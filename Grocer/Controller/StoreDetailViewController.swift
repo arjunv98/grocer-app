@@ -23,22 +23,23 @@ class StoreDetailViewController: UIViewController {
      */
     var selectedAnnotation: StoreAnnotation!
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
-
+    let saveImage = UIImage(systemName: "star")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DETAIL VIEW DID LOAD")
         storeName.text = selectedAnnotation.store?.name
         storeAddress.text = selectedAnnotation.store?.location?.address
         distanceLabel.text = "\(selectedAnnotation.distance) kilometers away"
-        saveButton.setImage(UIImage(named: "star"), for: .normal)
-        saveButton.setImage(UIImage(named: "star.fill"), for: .selected)
-        saveButton.isSelected = selectedAnnotation.store!.isSaved
+        saveButton.isSelected = selectedAnnotation.isSaved
     }
     
     @IBAction func didTapButton(_ sender: Any) {
+        saveButton.isSelected = !saveButton.isSelected
+        selectedAnnotation.isSaved = saveButton.isSelected
         let realm = try! Realm(configuration: configuration)
         try! realm.write {
-            selectedAnnotation.store?.isSaved = !selectedAnnotation.store!.isSaved
+            selectedAnnotation.store?.isSaved = saveButton.isSelected
         }
     }
     

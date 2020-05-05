@@ -17,15 +17,24 @@ class StoreAnnotation: NSObject, MKAnnotation {
     var name: String?
     var distance: Double
     var store: Store?
+    var isSaved: Bool
     
     var title: String?
     var subtitle: String?
+    var markerTintColor: UIColor {
+        if isSaved {
+            return .yellow
+        } else {
+            return .red
+        }
+    }
     
     init(coordinate: CLLocationCoordinate2D, name: String, distance: Double, store: Store? = nil) {
         self.coordinate = coordinate
         self.name = name
         self.distance = distance
         self.store = store
+        self.isSaved = store!.isSaved
         super.init()
         self.title = name
         self.subtitle = distanceToString(distance)
