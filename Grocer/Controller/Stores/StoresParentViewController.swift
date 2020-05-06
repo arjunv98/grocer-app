@@ -234,14 +234,14 @@ extension StoresParentViewController {
                 store.location = location
                 store.isNearby = true
                 
-                // create unique store id and check if store exists
+                // create unique store id and check if store exists before adding
                 store.createID(name: store.name, location: store.location!)
                 let match = stores.filter("id == '\(store.id)'").count > 0
-                if match {
-                    store.isSaved = true
+                if !match {
+                    realm.add(store, update: .modified)
+                } else {
+                    realm.create(Store.self, value: ["id": store.id, "isNearby": true], update: .modified)
                 }
-                
-                realm.add(store, update: .modified)
             }
         }
         // update child controller view data

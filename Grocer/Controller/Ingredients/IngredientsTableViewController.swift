@@ -33,6 +33,7 @@ class IngredientsTableViewController: UITableViewController {
         // Allow for checkmarks
         self.tableView.allowsMultipleSelection = true
         
+        
         updateView()
     }
     
@@ -75,14 +76,14 @@ class IngredientsTableViewController: UITableViewController {
     
     
     /*
-    * prepare(for:sender:) - Prepares segue to grocery list view controller
-    */
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     * prepare(for:sender:) - Prepares segue to grocery list view controller
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddIngredientSegue" {
             let controller = segue.destination as! AddIngredientTableViewController
             controller.presentationController?.delegate = self
         }
-     }
+    }
 }
 
 
@@ -101,7 +102,11 @@ extension IngredientsTableViewController {
      * tableView(_:numberOfRowsInSection:) - Return number of ingredients
      */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientsList.count
+        if let ingredients = ingredientsList {
+            return ingredientsList.count
+        } else {
+            return 0
+        }
     }
     
     /*
@@ -131,7 +136,7 @@ extension IngredientsTableViewController {
                     let url = URL(string: "https://spoonacular.com/cdn/ingredients_100x100/\(image)")
                     let data = try? Data(contentsOf: url!)
                     let image: UIImage = UIImage(data: data!)!
-
+                    
                     DispatchQueue.main.async {
                         SpoonacularAPIModel.shared.imageCache.setObject(image, forKey: NSString(string: "\(id)"))
                         cell.ingredientImageView.image = image

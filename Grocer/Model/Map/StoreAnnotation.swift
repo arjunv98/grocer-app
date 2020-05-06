@@ -23,7 +23,7 @@ final class StoreAnnotation: NSObject, MKAnnotation {
         if isSaved {
             return .yellow
         } else {
-            return .red
+            return UIColor(named: "ThemeColor")!
         }
     }
     

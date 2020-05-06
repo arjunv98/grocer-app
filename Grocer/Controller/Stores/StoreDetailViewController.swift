@@ -100,10 +100,16 @@ class StoreDetailViewController: UIViewController {
             let eventViewController = EKEventEditViewController.init()
             let event = EKEvent.init(eventStore: self.eventStore)
             
+            let groceryListNames = groceryList.map { ingredient in
+                return ingredient.name
+            }
+            let listItems = groceryListNames.joined(separator: "\n")
+            
             event.title = "Go grocery shopping"
             event.startDate = Date()
             event.endDate = Date()
             event.location = selectedStore.location?.address
+            event.notes = listItems
             
             eventViewController.event = event
             eventViewController.eventStore = self.eventStore

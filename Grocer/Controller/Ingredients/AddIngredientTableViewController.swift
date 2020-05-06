@@ -139,7 +139,9 @@ extension AddIngredientTableViewController {
             }
             
         }
-        self.dismiss(animated: true, completion: { self.dismiss(animated: true, completion: nil) })
+        self.dismiss(animated: true, completion: { self.dismiss(animated: true, completion: {
+            self.presentationController?.delegate?.presentationControllerDidDismiss?(self.presentationController!)
+        }) })
     }
 }
 
