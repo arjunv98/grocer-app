@@ -29,6 +29,9 @@
 		DCE9260E2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */; };
 		DCE9261024621B3C00EA6A5E /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9260F24621B3C00EA6A5E /* StoreCell.swift */; };
 		DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */; };
+		DCE92616246291C900EA6A5E /* SpoonacularAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */; };
+		DCE926182462982F00EA6A5E /* IngredientCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926172462982F00EA6A5E /* IngredientCodable.swift */; };
+		DCE9261A24629C3800EA6A5E /* IngredientAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreGroceryListTableViewController.swift; sourceTree = "<group>"; };
 		DCE9260F24621B3C00EA6A5E /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
 		DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
+		DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIModel.swift; sourceTree = "<group>"; };
+		DCE926172462982F00EA6A5E /* IngredientCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCodable.swift; sourceTree = "<group>"; };
+		DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +135,8 @@
 				DCE926072460D98600EA6A5E /* StoreAnnotation.swift */,
 				DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */,
 				DCE9260F24621B3C00EA6A5E /* StoreCell.swift */,
+				DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */,
+				DCE926172462982F00EA6A5E /* IngredientCodable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				DCE925FB2460960D00EA6A5E /* IngredientsTableViewController.swift */,
+				DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */,
 				DCE925FD2460961C00EA6A5E /* RecipesTableViewController.swift */,
 				DCE926032460966800EA6A5E /* StoresParentViewController.swift */,
 				DCE925FF2460963400EA6A5E /* StoreListTableViewController.swift */,
@@ -291,6 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE92616246291C900EA6A5E /* SpoonacularAPIModel.swift in Sources */,
+				DCE926182462982F00EA6A5E /* IngredientCodable.swift in Sources */,
+				DCE9261A24629C3800EA6A5E /* IngredientAddTableViewController.swift in Sources */,
 				DCE925F4246095D500EA6A5E /* Ingredient.swift in Sources */,
 				DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */,
 				DCE925E0246094A000EA6A5E /* Grocer.xcdatamodeld in Sources */,

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 import RealmSwift
 
 class StoreDetailViewController: UIViewController {
@@ -29,6 +31,7 @@ class StoreDetailViewController: UIViewController {
     var selectedStore: Store! // Set in list/map item segue
     var shoppingList: List<Ingredient>!
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+    var eventStore: EKEventStore!
     
     /*
      * viewDidLoad
@@ -36,6 +39,27 @@ class StoreDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DETAIL VIEW DID LOAD")
+        
+        eventStore = EKEventStore.init()
+        
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .authorized:
+            print("** PREVIOUS GRANTED AUTH **")
+        case .denied:
+            print("** DENIED AUTH **")
+        case .notDetermined:
+            eventStore.requestAccess(to: .event, completion: { (granted, error) in
+                if granted {
+                    print("** GRANTED AUTH **")
+                } else {
+                    print("** ERROR: \(error!) **")
+                }
+            })
+        default:
+            print("** DEFAULT CASE **")
+        }
+        
+        // Set values for labels in view
         storeName.text = selectedStore.name
         storeAddress.text = selectedStore.location?.address
         distanceLabel.text = selectedStore.distanceToKmString() + " kilometers away"
@@ -72,6 +96,27 @@ class StoreDetailViewController: UIViewController {
      * didTapCalendarButton - Directs to add calendar event modal
      */
     @IBAction func didTapCalendarButton(_ sender: UIButton) {
+        if EKEventStore.authorizationStatus(for: .event) == .authorized {
+            let eventViewController = EKEventEditViewController.init()
+            let event = EKEvent.init(eventStore: self.eventStore)
+            
+            event.title = "Go grocery shopping"
+            event.startDate = Date()
+            event.endDate = Date()
+            event.location = selectedStore.location?.address
+            
+            eventViewController.event = event
+            eventViewController.eventStore = self.eventStore
+            eventViewController.editViewDelegate = self
+            
+            present(eventViewController, animated: true, completion: nil)
+            
+        } else {
+            let message = "Calendar access unauthorized"
+            let alert = UIAlertController(title: "An Error Occurred", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     func updateView() {
@@ -133,5 +178,12 @@ extension StoreDetailViewController: UITableViewDelegate, UITableViewDataSource 
         cell.textLabel?.text = ingredient.name
         
         return cell
+    }
+}
+
+extension StoreDetailViewController: EKEventEditViewDelegate {
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        print("DISMISS CALENDAR")
+        controller.dismiss(animated: true, completion: nil)
     }
 }

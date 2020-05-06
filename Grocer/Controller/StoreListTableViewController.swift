@@ -61,7 +61,7 @@ class StoreListTableViewController: UITableViewController {
      */
     func updateView() {
         print("*** UPDATE LIST VIEW ***")
-        let stores = try! Realm(configuration: configuration).objects(Store.self)
+        let stores = try! Realm(configuration: configuration).objects(Store.self).sorted(byKeyPath: "distance")
         switch selection {
         case "Saved":
             storesList = stores.filter("isSaved == true")
@@ -139,7 +139,7 @@ extension StoreListTableViewController: UIAdaptivePresentationControllerDelegate
      * presentationControllerDidDismiss - Reloads map data when detail view is dismissed
      */
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        print("DISMISSED DETAIL VIEW")
+        print("DISMISSED DETAIL VIEW TO LIST")
         updateView()
     }
 }

@@ -55,6 +55,12 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>To locate nearby grocery stores</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>To add calendar events</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>To add calendar events</string>
+	<key>NSContactsUsageDescription</key>
+	<string>To add calendar events</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

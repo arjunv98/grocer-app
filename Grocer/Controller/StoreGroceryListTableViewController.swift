@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class StoreGroceryListTableViewController: UITableViewController {
     /*
@@ -35,6 +36,14 @@ class StoreGroceryListTableViewController: UITableViewController {
     /*
      * IB ACTIONS
      */
+    @IBAction func didTapSaveButton(_ sender: Any) {
+        // write to realm
+        print("UPDATING GROCERY LIST")
+    }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - Table view data source
     

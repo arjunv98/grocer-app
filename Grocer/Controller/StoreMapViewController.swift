@@ -111,7 +111,7 @@ extension StoreMapViewController: UIAdaptivePresentationControllerDelegate {
      * presentationControllerDidDismiss - Reloads map data when detail view is dismissed
      */
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        print("DISMISSED DETAIL VIEW")
+        print("DISMISSED DETAIL VIEW TO MAP")
         updateView()
     }
 }
