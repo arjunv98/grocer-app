@@ -1,5 +1,7 @@
 # grocer-app
-ITP 342 Final Project
+
+## Overview
+The purpose of Grocer is to help organize grocery lists for people who go to multiple grocery stores to shop. Users can add and check off ingredients in an overall grocery list, while also maintatining separate, more specific grocery lists for each of their favorite grocery stores.
 
 ## Current features:
 ### Ingredients
