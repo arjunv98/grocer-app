@@ -234,12 +234,10 @@ extension StoresParentViewController {
                 store.location = location
                 store.isNearby = true
                 
-                // create unique store id
+                // create unique store id and check if store exists
                 store.createID(name: store.name, location: store.location!)
-                print(store.id)
-                let matching = stores.filter("id == '\(store.id)'")
-                if let first = matching.first {
-                    print("\(first.name) already exists")
+                let match = stores.filter("id == '\(store.id)'").count > 0
+                if match {
                     store.isSaved = true
                 }
                 

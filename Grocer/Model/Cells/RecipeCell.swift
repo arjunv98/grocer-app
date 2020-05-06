@@ -1,0 +1,13 @@
+//
+//  RecipeCell.swift
+//  Grocer
+//
+//  Created by Arjun Viswanathan on 5/6/20.
+//  Copyright © 2020 Arjun Viswanathan. All rights reserved.
+//
+
+import UIKit
+
+class RecipeCell: UITableViewCell  {
+    var recipe: Recipe?
+}

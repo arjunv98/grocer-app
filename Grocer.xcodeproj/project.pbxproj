@@ -31,7 +31,12 @@
 		DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */; };
 		DCE92616246291C900EA6A5E /* SpoonacularAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */; };
 		DCE926182462982F00EA6A5E /* IngredientCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926172462982F00EA6A5E /* IngredientCodable.swift */; };
-		DCE9261A24629C3800EA6A5E /* IngredientAddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */; };
+		DCE9261A24629C3800EA6A5E /* AddIngredientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261924629C3800EA6A5E /* AddIngredientTableViewController.swift */; };
+		DCE926232462A80E00EA6A5E /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926222462A80E00EA6A5E /* RecipeCell.swift */; };
+		DCE926252462A84B00EA6A5E /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926242462A84B00EA6A5E /* IngredientCell.swift */; };
+		DCE926272462A86C00EA6A5E /* AddIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */; };
+		DCE9262B2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */; };
+		DCE9262D2462A8C400EA6A5E /* StoreGroceryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9262C2462A8C400EA6A5E /* StoreGroceryListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +68,12 @@
 		DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 		DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIModel.swift; sourceTree = "<group>"; };
 		DCE926172462982F00EA6A5E /* IngredientCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCodable.swift; sourceTree = "<group>"; };
-		DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientAddTableViewController.swift; sourceTree = "<group>"; };
+		DCE9261924629C3800EA6A5E /* AddIngredientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewController.swift; sourceTree = "<group>"; };
+		DCE926222462A80E00EA6A5E /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		DCE926242462A84B00EA6A5E /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
+		DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientCell.swift; sourceTree = "<group>"; };
+		DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedGroceryListCell.swift; sourceTree = "<group>"; };
+		DCE9262C2462A8C400EA6A5E /* StoreGroceryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreGroceryListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,15 +138,10 @@
 		DCE925EC246094B400EA6A5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DCE925F3246095D500EA6A5E /* Ingredient.swift */,
-				DCE925F5246095E000EA6A5E /* Recipe.swift */,
-				DCE925F7246095E800EA6A5E /* Store.swift */,
-				DCE925F9246095F300EA6A5E /* Location.swift */,
-				DCE926072460D98600EA6A5E /* StoreAnnotation.swift */,
-				DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */,
-				DCE9260F24621B3C00EA6A5E /* StoreCell.swift */,
-				DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */,
-				DCE926172462982F00EA6A5E /* IngredientCodable.swift */,
+				DCE9261E2462A71700EA6A5E /* Realm Objects */,
+				DCE9261D2462A70D00EA6A5E /* Map */,
+				DCE9261C2462A6FB00EA6A5E /* Cells */,
+				DCE9261B2462A6DB00EA6A5E /* Spoonacular */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,14 +158,9 @@
 		DCE925EE246094C400EA6A5E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DCE925FB2460960D00EA6A5E /* IngredientsTableViewController.swift */,
-				DCE9261924629C3800EA6A5E /* IngredientAddTableViewController.swift */,
-				DCE925FD2460961C00EA6A5E /* RecipesTableViewController.swift */,
-				DCE926032460966800EA6A5E /* StoresParentViewController.swift */,
-				DCE925FF2460963400EA6A5E /* StoreListTableViewController.swift */,
-				DCE926012460965100EA6A5E /* StoreMapViewController.swift */,
-				DCE9260B2460F8ED00EA6A5E /* StoreDetailViewController.swift */,
-				DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */,
+				DCE9261F2462A72B00EA6A5E /* Ingredients */,
+				DCE926202462A73A00EA6A5E /* Recipes */,
+				DCE926212462A74300EA6A5E /* Stores */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -183,6 +183,77 @@
 				DCE925DE246094A000EA6A5E /* Grocer.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		DCE9261B2462A6DB00EA6A5E /* Spoonacular */ = {
+			isa = PBXGroup;
+			children = (
+				DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */,
+				DCE926172462982F00EA6A5E /* IngredientCodable.swift */,
+			);
+			path = Spoonacular;
+			sourceTree = "<group>";
+		};
+		DCE9261C2462A6FB00EA6A5E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				DCE9260F24621B3C00EA6A5E /* StoreCell.swift */,
+				DCE926222462A80E00EA6A5E /* RecipeCell.swift */,
+				DCE926242462A84B00EA6A5E /* IngredientCell.swift */,
+				DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */,
+				DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */,
+				DCE9262C2462A8C400EA6A5E /* StoreGroceryListCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		DCE9261D2462A70D00EA6A5E /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				DCE926072460D98600EA6A5E /* StoreAnnotation.swift */,
+				DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		DCE9261E2462A71700EA6A5E /* Realm Objects */ = {
+			isa = PBXGroup;
+			children = (
+				DCE925F3246095D500EA6A5E /* Ingredient.swift */,
+				DCE925F5246095E000EA6A5E /* Recipe.swift */,
+				DCE925F7246095E800EA6A5E /* Store.swift */,
+				DCE925F9246095F300EA6A5E /* Location.swift */,
+			);
+			path = "Realm Objects";
+			sourceTree = "<group>";
+		};
+		DCE9261F2462A72B00EA6A5E /* Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				DCE925FB2460960D00EA6A5E /* IngredientsTableViewController.swift */,
+				DCE9261924629C3800EA6A5E /* AddIngredientTableViewController.swift */,
+			);
+			path = Ingredients;
+			sourceTree = "<group>";
+		};
+		DCE926202462A73A00EA6A5E /* Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				DCE925FD2460961C00EA6A5E /* RecipesTableViewController.swift */,
+			);
+			path = Recipes;
+			sourceTree = "<group>";
+		};
+		DCE926212462A74300EA6A5E /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				DCE926032460966800EA6A5E /* StoresParentViewController.swift */,
+				DCE925FF2460963400EA6A5E /* StoreListTableViewController.swift */,
+				DCE926012460965100EA6A5E /* StoreMapViewController.swift */,
+				DCE9260B2460F8ED00EA6A5E /* StoreDetailViewController.swift */,
+				DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */,
+			);
+			path = Stores;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,7 +373,9 @@
 			files = (
 				DCE92616246291C900EA6A5E /* SpoonacularAPIModel.swift in Sources */,
 				DCE926182462982F00EA6A5E /* IngredientCodable.swift in Sources */,
-				DCE9261A24629C3800EA6A5E /* IngredientAddTableViewController.swift in Sources */,
+				DCE9261A24629C3800EA6A5E /* AddIngredientTableViewController.swift in Sources */,
+				DCE926252462A84B00EA6A5E /* IngredientCell.swift in Sources */,
+				DCE926272462A86C00EA6A5E /* AddIngredientCell.swift in Sources */,
 				DCE925F4246095D500EA6A5E /* Ingredient.swift in Sources */,
 				DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */,
 				DCE925E0246094A000EA6A5E /* Grocer.xcdatamodeld in Sources */,
@@ -313,13 +386,16 @@
 				DCE9260C2460F8ED00EA6A5E /* StoreDetailViewController.swift in Sources */,
 				DCE9260A2460F60D00EA6A5E /* StoreMarkerView.swift in Sources */,
 				DCE925FE2460961C00EA6A5E /* RecipesTableViewController.swift in Sources */,
+				DCE9262D2462A8C400EA6A5E /* StoreGroceryListCell.swift in Sources */,
 				DCE926002460963400EA6A5E /* StoreListTableViewController.swift in Sources */,
 				DCE925F8246095E800EA6A5E /* Store.swift in Sources */,
 				DCE925D8246094A000EA6A5E /* SceneDelegate.swift in Sources */,
 				DCE925F6246095E000EA6A5E /* Recipe.swift in Sources */,
+				DCE926232462A80E00EA6A5E /* RecipeCell.swift in Sources */,
 				DCE9261024621B3C00EA6A5E /* StoreCell.swift in Sources */,
 				DCE926022460965100EA6A5E /* StoreMapViewController.swift in Sources */,
 				DCE925FA246095F300EA6A5E /* Location.swift in Sources */,
+				DCE9262B2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift in Sources */,
 				DCE9260E2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

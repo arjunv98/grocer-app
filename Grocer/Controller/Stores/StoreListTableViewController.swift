@@ -60,7 +60,7 @@ class StoreListTableViewController: UITableViewController {
      * updateView - Update table view to list either saved or nearby stores
      */
     func updateView() {
-        print("*** UPDATE LIST VIEW ***")
+        print("*** UPDATE STORE LIST VIEW ***")
         let stores = try! Realm(configuration: configuration).objects(Store.self).sorted(byKeyPath: "distance")
         switch selection {
         case "Saved":
