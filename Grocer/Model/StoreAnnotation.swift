@@ -12,10 +12,8 @@ import MapKit
 /*
  * StoreAnnotation - Class to store Store objects as MKAnnotation objects for display to map
  */
-class StoreAnnotation: NSObject, MKAnnotation {
+final class StoreAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
-    var name: String?
-    var distance: Double
     var store: Store?
     var isSaved: Bool
     
@@ -29,35 +27,17 @@ class StoreAnnotation: NSObject, MKAnnotation {
         }
     }
     
-    init(coordinate: CLLocationCoordinate2D, name: String, distance: Double, store: Store? = nil) {
-        self.coordinate = coordinate
-        self.name = name
-        self.distance = distance
+    /*
+     * init(store:) - Initializes annotation values using store parameter
+     */
+    init(store: Store? = nil) {
         self.store = store
+        self.coordinate = CLLocationCoordinate2D(latitude: store!.location!.latitude, longitude: store!.location!.longitude)
         self.isSaved = store!.isSaved
-        super.init()
-        self.title = name
-        self.subtitle = distanceToString(distance)
-    }
-    
-    private func distanceToString(_ distance: Double) -> String {
-        // round distance to 1 and 0 decimal values
-        let distance = distance / 1000
-        let roundedTenth = distance.rounded(toPlaces: 1)
-        let roundedFull = distance.rounded()
         
-        // return distance as "* km" if decimal is 0, otherwise "*.* km"
-        if roundedTenth == roundedFull && roundedFull != 0.0 {
-            return "\(Int(roundedFull)) km"
-        } else {
-            return "\(roundedTenth) km"
-        }
-    }
-}
-
-extension Double {
-    func rounded(toPlaces places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
+        super.init()
+        
+        self.title = store!.name
+        self.subtitle = store!.distanceToKmString() + " km"
     }
 }

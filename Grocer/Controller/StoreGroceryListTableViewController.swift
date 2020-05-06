@@ -1,22 +1,21 @@
 //
-//  RecipesTableViewController.swift
+//  StoreGroceryListTableViewController.swift
 //  Grocer
 //
-//  Created by Arjun Viswanathan on 5/4/20.
+//  Created by Arjun Viswanathan on 5/5/20.
 //  Copyright © 2020 Arjun Viswanathan. All rights reserved.
 //
 
 import UIKit
-import RealmSwift
 
-class RecipesTableViewController: UITableViewController {
+class StoreGroceryListTableViewController: UITableViewController {
     /*
-     * IB OUTLETS
+     * --- IB OUTLETS ----------------------------------------------------------
      */
     
     
     /*
-     * VARIABLES
+     * --- VARIABLES -----------------------------------------------------------
      */
     
     
@@ -32,6 +31,10 @@ class RecipesTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    /*
+     * IB ACTIONS
+     */
     
     // MARK: - Table view data source
     
@@ -71,7 +74,7 @@ class RecipesTableViewController: UITableViewController {
      tableView.deleteRows(at: [indexPath], with: .fade)
      } else if editingStyle == .insert {
      // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }    
+     }
      }
      */
     

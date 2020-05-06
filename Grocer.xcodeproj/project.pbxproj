@@ -26,6 +26,9 @@
 		DCE926082460D98600EA6A5E /* StoreAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926072460D98600EA6A5E /* StoreAnnotation.swift */; };
 		DCE9260A2460F60D00EA6A5E /* StoreMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */; };
 		DCE9260C2460F8ED00EA6A5E /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9260B2460F8ED00EA6A5E /* StoreDetailViewController.swift */; };
+		DCE9260E2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */; };
+		DCE9261024621B3C00EA6A5E /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9260F24621B3C00EA6A5E /* StoreCell.swift */; };
+		DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		DCE926072460D98600EA6A5E /* StoreAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAnnotation.swift; sourceTree = "<group>"; };
 		DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMarkerView.swift; sourceTree = "<group>"; };
 		DCE9260B2460F8ED00EA6A5E /* StoreDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
+		DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreGroceryListTableViewController.swift; sourceTree = "<group>"; };
+		DCE9260F24621B3C00EA6A5E /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,7 @@
 				DCE925F9246095F300EA6A5E /* Location.swift */,
 				DCE926072460D98600EA6A5E /* StoreAnnotation.swift */,
 				DCE926092460F60D00EA6A5E /* StoreMarkerView.swift */,
+				DCE9260F24621B3C00EA6A5E /* StoreCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +151,7 @@
 				DCE925FF2460963400EA6A5E /* StoreListTableViewController.swift */,
 				DCE926012460965100EA6A5E /* StoreMapViewController.swift */,
 				DCE9260B2460F8ED00EA6A5E /* StoreDetailViewController.swift */,
+				DCE9260D2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -154,6 +162,7 @@
 				DCE925D5246094A000EA6A5E /* AppDelegate.swift */,
 				DCE925D7246094A000EA6A5E /* SceneDelegate.swift */,
 				DCE925E6246094A200EA6A5E /* Info.plist */,
+				DCE9261124621E2900EA6A5E /* ReuseIdentifying.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -283,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCE925F4246095D500EA6A5E /* Ingredient.swift in Sources */,
+				DCE9261224621E2900EA6A5E /* ReuseIdentifying.swift in Sources */,
 				DCE925E0246094A000EA6A5E /* Grocer.xcdatamodeld in Sources */,
 				DCE925FC2460960D00EA6A5E /* IngredientsTableViewController.swift in Sources */,
 				DCE925D6246094A000EA6A5E /* AppDelegate.swift in Sources */,
@@ -295,8 +305,10 @@
 				DCE925F8246095E800EA6A5E /* Store.swift in Sources */,
 				DCE925D8246094A000EA6A5E /* SceneDelegate.swift in Sources */,
 				DCE925F6246095E000EA6A5E /* Recipe.swift in Sources */,
+				DCE9261024621B3C00EA6A5E /* StoreCell.swift in Sources */,
 				DCE926022460965100EA6A5E /* StoreMapViewController.swift in Sources */,
 				DCE925FA246095F300EA6A5E /* Location.swift in Sources */,
+				DCE9260E2461FB7000EA6A5E /* StoreGroceryListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

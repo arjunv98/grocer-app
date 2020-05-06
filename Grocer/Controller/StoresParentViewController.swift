@@ -13,12 +13,12 @@ import RealmSwift
 class StoresParentViewController: UIViewController {
     
     /*
-     * IB Outlets
+     * IB OUTLETS
      */
     @IBOutlet weak var toggleButton: UIBarButtonItem!
     
     /*
-     * Variables
+     * VARIABLES
      */
     var currentLocation: CLLocation = CLLocation(latitude: 34.0224, longitude: -118.2851) // default location is USC
     var locationManager = CLLocationManager()
@@ -55,7 +55,7 @@ class StoresParentViewController: UIViewController {
         locationManager.delegate = self
         // request location access
         locationManager.requestWhenInUseAuthorization()
-
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
             print("* LOCATION AUTHORIZED *")
             requestCurrentLocation() // begin receiving current location
@@ -66,10 +66,10 @@ class StoresParentViewController: UIViewController {
     }
     
     /*
-     * IB Actions
+     * IB ACTIONS
      */
     /*
-     * didTapButton - Toggle between table view and map view of stores
+     * didTapSaveButton - Toggle between table view and map view of stores
      */
     @IBAction func didTapButton(_ sender: Any) {
         print("* BUTTON TAPPED *")
@@ -130,20 +130,17 @@ extension StoresParentViewController {
     private func updateView() {
         print("*** UPDATE PARENT VIEW ***")
         
-        // Search for food markets and update Store DB
-        searchForFoodMarket()
-        
         // update current location in child view controllers
         updateChildLocations()
-
+        
         // Search for nearby food markets and update Store DB
         searchForFoodMarket()
         
         if tableViewActive {
-            print("** SWITCH TO TABLE **")
+            print("** SWITCH TO LIST **")
             removeView(asChildViewController: mapViewController)
             addView(asChildViewController: tableViewController)
-//            tableViewController.updateView()
+            tableViewController.updateView()
             toggleButton.title = "Map"
         } else {
             print("** SWITCH TO MAP **")
@@ -169,8 +166,8 @@ extension StoresParentViewController {
         // only interested in food markets
         request.pointOfInterestFilter = MKPointOfInterestFilter(including: [.foodMarket])
         
-        // search in 5km radius of currently location
-        request.region = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        // search in 8km radius of currently location
+        request.region = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 16000, longitudinalMeters: 16000)
         
         // address results are irrelevant
         request.resultTypes = .pointOfInterest
@@ -203,27 +200,55 @@ extension StoresParentViewController {
         print("*** UPDATE STORE LIST ***")
         let mapItems = mapItems
         let realm = try! Realm(configuration: configuration)
-        let oldStores = realm.objects(Store.self).filter("isSaved == false")
+        let stores = realm.objects(Store.self)
+        let oldStores = stores.filter("isSaved == false")
         try! realm.write {
+            // remove unsaved stores
             for store in oldStores {
-                realm.delete(store.location!)
+                if let location = store.location {
+                    realm.delete(location)
+                }
                 realm.delete(store)
             }
+            // update distance on remaining stores and remove from 'nearby' region
+            for store in stores {
+                if let location = store.location {
+                    store.distance = currentLocation.distance(from: CLLocation(latitude: location.latitude, longitude: location.longitude))
+                }
+                store.isNearby = false
+            }
+            // get and set results
             for mapItem in mapItems {
                 let store = Store()
                 let location = Location()
+                
+                // set location and distance
                 location.latitude = mapItem.placemark.coordinate.latitude
                 location.longitude = mapItem.placemark.coordinate.longitude
                 location.address = mapItem.placemark.title ?? "N/A"
+                let distance = currentLocation.distance(from: CLLocation(latitude: location.latitude, longitude: location.longitude))
                 
+                // set store details
                 store.name = mapItem.placemark.name ?? "N/A"
+                store.distance = distance
                 store.location = location
+                store.isNearby = true
                 
-                realm.add(store)
+                // create unique store id
+                store.createID(name: store.name, location: store.location!)
+                print(store.id)
+                let matching = stores.filter("id == '\(store.id)'")
+                if let first = matching.first {
+                    print("\(first.name) already exists")
+                    store.isSaved = true
+                }
+                
+                realm.add(store, update: .modified)
             }
         }
+        // update child controller view data
         mapViewController.updateView()
-//        tableViewController.updateView()
+        tableViewController.updateView()
     }
 }
 
@@ -279,6 +304,7 @@ extension StoresParentViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("!!! LOCATION ERROR !!!")
         currentLocation = CLLocation(latitude: 34.0224, longitude: -118.2851) // USC
+        updateView()
         let message = "\(error.localizedDescription)\n\nUnable to retrieve location"
         let alert = UIAlertController(title: "An Error Occurred", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

@@ -11,17 +11,17 @@ import MapKit
 import RealmSwift
 
 class StoreMapViewController: UIViewController {
-
-    /*
-    * IB Outlets
-    */
-    @IBOutlet weak var mapView: MKMapView!
     
     /*
-    * Variables
-    */
+     * --- IB OUTLETS ----------------------------------------------------------
+     */
+    @IBOutlet weak var mapView: MKMapView!
+    
+    
+    /*
+     * --- VARIABLES -----------------------------------------------------------
+     */
     var currentLocation: CLLocation! // updated from parent
-    var locationManager = CLLocationManager()
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     private var annotations = [StoreAnnotation]()
     
@@ -32,12 +32,17 @@ class StoreMapViewController: UIViewController {
         super.viewDidLoad()
         print("MAP VIEW DID LOAD")
         
-        mapView.delegate = self
+//        mapView.delegate = self
         mapView.register(StoreMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         updateView()
         mapView.showsUserLocation = true
     }
+    
+    
+    /*
+     * --- HELPER FUNCTIONS ----------------------------------------------------
+     */
     
     /*
      * updateView - Update mapView to center on current location, and load in annotations
@@ -60,28 +65,32 @@ class StoreMapViewController: UIViewController {
         let stores = try! Realm(configuration: configuration).objects(Store.self)
         // create list of custom storeAnnotation objects
         annotations = stores.map { store in
-            let coordinate = CLLocationCoordinate2D(latitude: store.location!.latitude, longitude: store.location!.longitude)
-            let name = store.name
-            let distance = currentLocation.distance(from: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
-            let annotation = StoreAnnotation(coordinate: coordinate, name: name, distance: distance, store: store)
-            
+            let annotation = StoreAnnotation(store: store)
             return annotation
         }
         
         mapView.addAnnotations(annotations)
-//        mapView.showAnnotations(annotations, animated: true)
+        //        mapView.showAnnotations(annotations, animated: true)
     }
     
+    /*
+     * prepare(for:sender:) - Prepares segue to detail view controller
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MapStoreDetailSegue" {
             let controller = segue.destination as! StoreDetailViewController
             let storeAnnotation = sender as! StoreAnnotation
-            controller.selectedAnnotation = storeAnnotation
+            controller.selectedStore = storeAnnotation.store
+            controller.presentationController?.delegate = self
         }
     }
-
+    
 }
 
+
+/*
+ * MAP ANNOTATIONS
+ */
 extension StoreMapViewController: MKMapViewDelegate {    
     /*
      * mapView(_:annotationView:calloutAccessoryControlTapped:)
@@ -90,5 +99,19 @@ extension StoreMapViewController: MKMapViewDelegate {
         if let storeAnnotation = view.annotation as? StoreAnnotation {
             performSegue(withIdentifier: "MapStoreDetailSegue", sender: storeAnnotation)
         }
+    }
+}
+
+
+/*
+* --- DETAIL VIEW TRANSITION --------------------------------------------------
+*/
+extension StoreMapViewController: UIAdaptivePresentationControllerDelegate {
+    /*
+     * presentationControllerDidDismiss - Reloads map data when detail view is dismissed
+     */
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        print("DISMISSED DETAIL VIEW")
+        updateView()
     }
 }

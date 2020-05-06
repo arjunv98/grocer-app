@@ -8,99 +8,138 @@
 
 import UIKit
 import CoreLocation
+import RealmSwift
 
 class StoreListTableViewController: UITableViewController {
-
+    
     /*
-    * IB Outlets
-    */
+     * --- IB OUTLETS ----------------------------------------------------------
+     */
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    /*
-    * Variables
-    */
-    var currentLocation: CLLocation! // updated from parent
     
     /*
-    * viewDidLoad - Initial view load
-    */
+     * --- VARIABLES -----------------------------------------------------------
+     */
+    var currentLocation: CLLocation! // updated from parent
+    let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+    var storesList: Results<Store>!
+    var selection = "All"
+    
+    /*
+     * viewDidLoad - Initial view load
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         print("LIST VIEW DID LOAD")
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        selection = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)!
+        updateView()
     }
+    
+    
+    /*
+     * --- IB ACTIONS ----------------------------------------------------------
+     */
+    
+    /*
+     * didChangeSegmentedControl - Changes result scope and calls for result update
+     */
+    @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
+        selection = sender.titleForSegment(at: sender.selectedSegmentIndex)!
+        updateView()
+    }
+    
+    
+    /*
+     * --- HELPER FUNCTIONS ----------------------------------------------------
+     */
+    
+    /*
+     * updateView - Update table view to list either saved or nearby stores
+     */
+    func updateView() {
+        print("*** UPDATE LIST VIEW ***")
+        let stores = try! Realm(configuration: configuration).objects(Store.self)
+        switch selection {
+        case "Saved":
+            storesList = stores.filter("isSaved == true")
+        case "All":
+            storesList = stores
+        case "Nearby":
+            storesList = stores.filter("isNearby == true")
+        default:
+            storesList = stores
+        }
+        
+        print("** UPDATE LIST FOR \(selection.uppercased()) **")
+        tableView.reloadData()
+    }
+    
+     /*
+     * prepare(for:sender:) - Prepares segue to detail view controller
+     */
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ListStoreDetailSegue" {
+            let controller = segue.destination as! StoreDetailViewController
+            let cell = sender as! StoreCell
+            controller.selectedStore = cell.store
+            controller.presentationController?.delegate = self
+        }
+     }
+}
 
-    // MARK: - Table view data source
 
+/*
+ * --- TABLE VIEW --------------------------------------------------------------
+ */
+extension StoreListTableViewController {
+    /*
+     * numberOfSections - Return number of sections in table view
+     */
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
+    /*
+     * tableView(_:numberOfRowsInSection:) - Return number of store items for table view
+     */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return storesList.count
     }
-
+    
     /*
+     * tableView(_:cellForRowAt:) - Configures table cells
+     */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: StoreCell.reuseIdentifier) as? StoreCell {
+            cell.initializeCell(with: storesList[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
-    */
-
+    
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+     * tableView(_:didSelectRowAt:) - Select correct cell and segue to detail view
+     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "ListStoreDetailSegue", sender: cell)
     }
-    */
+}
 
+
+/*
+ * --- DETAIL VIEW TRANSITION --------------------------------------------------
+ */
+extension StoreListTableViewController: UIAdaptivePresentationControllerDelegate {
     /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+     * presentationControllerDidDismiss - Reloads map data when detail view is dismissed
+     */
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        print("DISMISSED DETAIL VIEW")
+        updateView()
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
