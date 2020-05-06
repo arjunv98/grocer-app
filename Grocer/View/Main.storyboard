@@ -76,7 +76,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Ingredients" id="fDv-QV-d6K">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="iC0-z5-JNe"/>
                         <barButtonItem key="rightBarButtonItem" title="Add" image="plus" catalog="system" id="dQX-CS-EcN">
                             <connections>
                                 <segue destination="gcU-d9-TFg" kind="presentation" identifier="AddIngredientSegue" id="2KY-c2-NYp"/>
@@ -401,6 +400,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="x0f-rw-WiX" id="oq0-dI-k75"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -435,7 +437,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Edit"/>
                                 <connections>
-                                    <segue destination="qCz-Fh-dE4" kind="presentation" id="64i-HK-Qrd"/>
+                                    <segue destination="qCz-Fh-dE4" kind="presentation" identifier="ModifyGroceryListSegue" id="64i-HK-Qrd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ph1-Oh-jAh">
@@ -594,7 +596,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
-                                <navigationItem title="Grocery List" id="Tdw-Hy-co3">
+                                <navigationItem title="Add to Grocery List" id="Tdw-Hy-co3">
                                     <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="YMu-e9-wBA">
                                         <connections>
                                             <action selector="didTapCancelButton:" destination="qCz-Fh-dE4" id="adh-FK-6Mb"/>
@@ -625,6 +627,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="aIe-Ew-Sow" id="rW1-5q-0gw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -639,7 +644,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6fo-u4-tUg"/>
+        <segue reference="O1e-bo-oRe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Groceries" width="25" height="25"/>

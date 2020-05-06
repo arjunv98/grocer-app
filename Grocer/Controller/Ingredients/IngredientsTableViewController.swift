@@ -33,7 +33,6 @@ class IngredientsTableViewController: UITableViewController {
         // Allow for checkmarks
         self.tableView.allowsMultipleSelection = true
         
-        selection = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)!
         updateView()
     }
     
@@ -76,50 +75,14 @@ class IngredientsTableViewController: UITableViewController {
     
     
     /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }    
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    * prepare(for:sender:) - Prepares segue to grocery list view controller
+    */
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if segue.identifier == "AddIngredientSegue" {
+            let controller = segue.destination as! AddIngredientTableViewController
+            controller.presentationController?.delegate = self
+        }
      }
-     */
-    
 }
 
 
@@ -180,7 +143,6 @@ extension IngredientsTableViewController {
         return UITableViewCell()
     }
     
-    
     /*
      * tableView(_:didSelectRowAt:) - Check or uncheck ingredient and update realm
      */
@@ -202,6 +164,21 @@ extension IngredientsTableViewController {
         }
         updateView()
     }
+    
+    /*
+     * tableView(_:commit:forRowAt:) - Enale swipe to delete rows
+     */
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let cell = tableView.cellForRow(at: indexPath) as? IngredientCell {
+                let realm = try! Realm(configuration: configuration)
+                try! realm.write {
+                    realm.delete(cell.ingredient!)
+                }
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 
 
@@ -210,7 +187,7 @@ extension IngredientsTableViewController {
  */
 extension IngredientsTableViewController: UIAdaptivePresentationControllerDelegate {
     /*
-     * presentationControllerDidDismiss - Reloads map data when detail view is dismissed
+     * presentationControllerDidDismiss - Reloads ingredient data after new ingredient was possibly added
      */
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         print("DISMISSED ADD VIEW TO LIST")

@@ -9,7 +9,7 @@
 import UIKit
 
 class ExpandedGroceryListCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
     var ingredient: Ingredient?
-    var imageUrl: String?
 }
 

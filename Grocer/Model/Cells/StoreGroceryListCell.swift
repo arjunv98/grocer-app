@@ -9,6 +9,6 @@
 import UIKit
 
 class StoreGroceryListCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
     var ingredient: Ingredient?
-    var imageUrl: String?
 }

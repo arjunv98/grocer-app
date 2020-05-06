@@ -29,7 +29,7 @@ class StoreDetailViewController: UIViewController {
      * --- VARIABLES ----------------------------------------------------------
      */
     var selectedStore: Store! // Set in list/map item segue
-    var shoppingList: List<Ingredient>!
+    var groceryList: List<Ingredient>!
     let configuration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
     var eventStore: EKEventStore!
     
@@ -64,10 +64,10 @@ class StoreDetailViewController: UIViewController {
         storeAddress.text = selectedStore.location?.address
         distanceLabel.text = selectedStore.distanceToKmString() + " kilometers away"
         saveButton.isSelected = selectedStore.isSaved
-        shoppingList = selectedStore.shoppingList
+        groceryList = selectedStore.groceryList
         
         editButton.setTitle("Add", for: .normal)
-        if !shoppingList.isEmpty {
+        if !groceryList.isEmpty {
             editButton.setTitle("Edit", for: .normal)
         }
         
@@ -140,15 +140,15 @@ class StoreDetailViewController: UIViewController {
     }
     
     /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
+     * prepare(for:sender:) - Prepares segue to grocery list view controller
      */
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ModifyGroceryListSegue" {
+            let controller = segue.destination as! StoreGroceryListTableViewController
+            controller.selectedStore = self.selectedStore
+            controller.presentationController?.delegate = self
+        }
+    }
 }
 
 /*
@@ -166,24 +166,42 @@ extension StoreDetailViewController: UITableViewDelegate, UITableViewDataSource 
      * tableView(_:numberOfRowsInSection:) - Return number of shopping list items for table view
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingList.count
+        return groceryList.count
     }
     
     /*
      * tableView(_:cellForRowAt:) - Configures table cells
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BasicIngredientCell", for: indexPath)
-        let ingredient = shoppingList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: StoreGroceryListCell.reuseIdentifier, for: indexPath)
+        let ingredient = groceryList[indexPath.row]
         cell.textLabel?.text = ingredient.name
         
         return cell
     }
 }
 
+
+/*
+ * --- CALENDAR ----------------------------------------------------------------
+ */
 extension StoreDetailViewController: EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
-        print("DISMISS CALENDAR")
+        print("DISMISSED CALENDAR")
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+/*
+* --- GROCERY LIST TRANSITION --------------------------------------------------
+*/
+extension StoreDetailViewController: UIAdaptivePresentationControllerDelegate {
+    /*
+     * presentationControllerDidDismiss - Reloads map data when grocery list view is dismissed
+     */
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        print("DISMISSED GROCERY LIST TO DETAIL")
+        updateView()
     }
 }

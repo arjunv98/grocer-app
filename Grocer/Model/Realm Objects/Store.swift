@@ -15,7 +15,7 @@ class Store: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var distance = 0.0
-    let shoppingList = List<Ingredient>()
+    let groceryList = List<Ingredient>()
     @objc dynamic var location: Location?
     @objc dynamic var isNearby = false
     @objc dynamic var isSaved = false
