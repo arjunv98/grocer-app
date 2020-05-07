@@ -37,6 +37,11 @@ class IngredientsTableViewController: UITableViewController {
         updateView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateView()
+    }
+    
     
     /*
      * --- IB ACTIONS ----------------------------------------------------------
@@ -103,7 +108,7 @@ extension IngredientsTableViewController {
      */
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let ingredients = ingredientsList {
-            return ingredientsList.count
+            return ingredients.count
         } else {
             return 0
         }

@@ -179,11 +179,47 @@ extension StoreDetailViewController: UITableViewDelegate, UITableViewDataSource 
      * tableView(_:cellForRowAt:) - Configures table cells
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: StoreGroceryListCell.reuseIdentifier, for: indexPath)
-        let ingredient = groceryList[indexPath.row]
-        cell.textLabel?.text = ingredient.name
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: StoreGroceryListCell.reuseIdentifier, for: indexPath) as? StoreGroceryListCell {
+            let ingredient = groceryList[indexPath.row]
+            
+            cell.ingredient = ingredient
+            if ingredient.isChecked {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: ingredient.name.capitalized)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                cell.textLabel?.attributedText = attributeString
+            } else {
+                cell.textLabel?.attributedText = NSMutableAttributedString(string: cell.ingredient!.name.capitalized)
+            }
+            
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    /*
+     * tableView(_:didSelectRowAt:) - Check or uncheck ingredient and update realm
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? StoreGroceryListCell {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            // write change to realm
+            print("CHECKING \(cell.ingredient!.name.uppercased())")
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+                cell.ingredient!.isChecked = !cell.ingredient!.isChecked
+            }
+            print("\(cell.ingredient!.name.uppercased()): \(cell.ingredient!.isChecked)")
+            
+            if cell.ingredient!.isChecked {
+                let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: cell.ingredient!.name.capitalized)
+                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
+                cell.textLabel?.attributedText = attributeString
+            } else {
+                cell.textLabel?.attributedText = NSMutableAttributedString(string: cell.ingredient!.name.capitalized)
+            }
+        }
+        updateView()
     }
 }
 
@@ -200,8 +236,8 @@ extension StoreDetailViewController: EKEventEditViewDelegate {
 
 
 /*
-* --- GROCERY LIST TRANSITION --------------------------------------------------
-*/
+ * --- GROCERY LIST TRANSITION --------------------------------------------------
+ */
 extension StoreDetailViewController: UIAdaptivePresentationControllerDelegate {
     /*
      * presentationControllerDidDismiss - Reloads map data when grocery list view is dismissed
