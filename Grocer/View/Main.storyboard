@@ -90,7 +90,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ZD-xw-5Lb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1467" y="-449"/>
+            <point key="canvasLocation" x="881" y="301"/>
         </scene>
         <!--Add Ingredient-->
         <scene sceneID="Y6a-dz-prg">
@@ -146,68 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fPf-HG-CyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2524.6376811594205" y="-449.33035714285711"/>
-        </scene>
-        <!--Recipes-->
-        <scene sceneID="Olr-wK-IT7">
-            <objects>
-                <tableViewController id="1Vl-Hb-wNV" customClass="RecipesTableViewController" customModule="Grocer" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eg6-58-9AY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="thr-KW-g1L">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Pb8-Un-pWx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="qRP-TH-Ara"/>
-                                    </constraints>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="948-R0-Cf4">
-                                    <rect key="frame" x="77" y="56" width="260" height="39"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="LwN-3p-PeM"/>
-                                    </constraints>
-                                    <segments>
-                                        <segment title="Saved"/>
-                                        <segment title="Recommended"/>
-                                    </segments>
-                                </segmentedControl>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            <constraints>
-                                <constraint firstItem="948-R0-Cf4" firstAttribute="centerX" secondItem="thr-KW-g1L" secondAttribute="centerX" id="9ld-Yg-tPC"/>
-                                <constraint firstAttribute="trailing" secondItem="Pb8-Un-pWx" secondAttribute="trailing" id="Xs0-Yj-4Hp"/>
-                                <constraint firstAttribute="bottom" secondItem="948-R0-Cf4" secondAttribute="bottom" constant="6" id="hkR-Zb-Ebk"/>
-                                <constraint firstItem="948-R0-Cf4" firstAttribute="top" secondItem="Pb8-Un-pWx" secondAttribute="bottom" constant="6" id="i2X-wW-iEq"/>
-                                <constraint firstItem="Pb8-Un-pWx" firstAttribute="leading" secondItem="thr-KW-g1L" secondAttribute="leading" id="l14-uq-joG"/>
-                                <constraint firstItem="Pb8-Un-pWx" firstAttribute="top" secondItem="thr-KW-g1L" secondAttribute="top" id="sDF-gb-W54"/>
-                            </constraints>
-                        </view>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" id="8gb-uc-5If" customClass="RecipeCell" customModule="Grocer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8gb-uc-5If" id="B53-c5-ruD">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="1Vl-Hb-wNV" id="d9W-B5-KTZ"/>
-                            <outlet property="delegate" destination="1Vl-Hb-wNV" id="qjJ-3V-eHk"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Recipes" id="yCG-Sw-TqM"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mE3-aU-mWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1467" y="301"/>
+            <point key="canvasLocation" x="1825" y="301"/>
         </scene>
         <!--Stores-->
         <scene sceneID="22d-Oc-twe">
@@ -233,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Olf-NA-T62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191" y="1553"/>
+            <point key="canvasLocation" x="-46" y="1448"/>
         </scene>
         <!--Store List Table View Controller-->
         <scene sceneID="RCR-xK-4zZ">
@@ -310,7 +249,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="385-Ng-Y5g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1170" y="1919"/>
+            <point key="canvasLocation" x="880" y="1863"/>
         </scene>
         <!--Store Map View Controller-->
         <scene sceneID="2vk-y5-Qtx">
@@ -343,7 +282,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxK-To-Oes" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1170" y="1217"/>
+            <point key="canvasLocation" x="880" y="1128"/>
         </scene>
         <!--Store Detail View Controller-->
         <scene sceneID="I3v-xf-5gc">
@@ -500,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4H-pc-WDV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2141.25" y="1552.8169014084508"/>
+            <point key="canvasLocation" x="1825" y="1448"/>
         </scene>
         <!--Stores-->
         <scene sceneID="V7a-aG-N1I">
@@ -520,27 +459,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuF-TK-yVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-984" y="1553"/>
-        </scene>
-        <!--Recipes-->
-        <scene sceneID="77f-T6-Jmm">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qhI-Co-fgX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recipes" image="Recipe" id="aWX-Oi-dod"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ad6-zC-iUr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="ThemeColor"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="1Vl-Hb-wNV" kind="relationship" relationship="rootViewController" id="oWy-kj-a9O"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kzd-dM-jhI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="193" y="301"/>
+            <point key="canvasLocation" x="-984" y="1448"/>
         </scene>
         <!--Ingredients-->
         <scene sceneID="jl3-MU-hgx">
@@ -560,7 +479,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUX-oO-fEG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="-449"/>
+            <point key="canvasLocation" x="-46" y="301"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ECh-22-rg6">
@@ -581,7 +500,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="UlH-0y-y9O" kind="relationship" relationship="viewControllers" id="G7O-Ch-XIe"/>
-                        <segue destination="qhI-Co-fgX" kind="relationship" relationship="viewControllers" id="Q5d-ff-QPj"/>
                         <segue destination="b8N-gP-TpU" kind="relationship" relationship="viewControllers" id="E5w-Wb-bkw"/>
                     </connections>
                 </tabBarController>
@@ -645,7 +563,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXS-Ud-MmO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3251" y="1552"/>
+            <point key="canvasLocation" x="2854" y="1448"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -654,7 +572,6 @@
     <resources>
         <image name="Groceries" width="25" height="25"/>
         <image name="Market" width="25" height="25"/>
-        <image name="Recipe" width="25" height="25"/>
         <image name="calendar.badge.plus" catalog="system" width="128" height="101"/>
         <image name="nosign" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
