@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90DE46695F443E9547096199 /* Pods_Grocer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */; };
+		40E8A8B74E91BA9B5EB8C4DE /* Pods_Grocer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D397EB6EACCA959DBC7A0984 /* Pods_Grocer.framework */; };
 		DCE925D6246094A000EA6A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE925D5246094A000EA6A5E /* AppDelegate.swift */; };
 		DCE925D8246094A000EA6A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE925D7246094A000EA6A5E /* SceneDelegate.swift */; };
 		DCE925E0246094A000EA6A5E /* Grocer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCE925DE246094A000EA6A5E /* Grocer.xcdatamodeld */; };
@@ -30,7 +30,6 @@
 		DCE92616246291C900EA6A5E /* SpoonacularAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */; };
 		DCE926182462982F00EA6A5E /* IngredientCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926172462982F00EA6A5E /* IngredientCodable.swift */; };
 		DCE9261A24629C3800EA6A5E /* AddIngredientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9261924629C3800EA6A5E /* AddIngredientTableViewController.swift */; };
-		DCE926232462A80E00EA6A5E /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926222462A80E00EA6A5E /* RecipeCell.swift */; };
 		DCE926252462A84B00EA6A5E /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926242462A84B00EA6A5E /* IngredientCell.swift */; };
 		DCE926272462A86C00EA6A5E /* AddIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */; };
 		DCE9262B2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */; };
@@ -38,9 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.debug.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.debug.xcconfig"; sourceTree = "<group>"; };
-		AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.release.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.release.xcconfig"; sourceTree = "<group>"; };
-		D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		736BD281898D8C61B5FF3719 /* Pods-Grocer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.release.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.release.xcconfig"; sourceTree = "<group>"; };
+		D02D7B887E479ABE3426DBC2 /* Pods-Grocer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grocer.debug.xcconfig"; path = "Target Support Files/Pods-Grocer/Pods-Grocer.debug.xcconfig"; sourceTree = "<group>"; };
+		D397EB6EACCA959DBC7A0984 /* Pods_Grocer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grocer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE925D2246094A000EA6A5E /* Grocer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grocer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE925D5246094A000EA6A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE925D7246094A000EA6A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,7 +64,6 @@
 		DCE92615246291C900EA6A5E /* SpoonacularAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIModel.swift; sourceTree = "<group>"; };
 		DCE926172462982F00EA6A5E /* IngredientCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCodable.swift; sourceTree = "<group>"; };
 		DCE9261924629C3800EA6A5E /* AddIngredientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientTableViewController.swift; sourceTree = "<group>"; };
-		DCE926222462A80E00EA6A5E /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		DCE926242462A84B00EA6A5E /* IngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientCell.swift; sourceTree = "<group>"; };
 		DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientCell.swift; sourceTree = "<group>"; };
 		DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedGroceryListCell.swift; sourceTree = "<group>"; };
@@ -77,17 +75,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90DE46695F443E9547096199 /* Pods_Grocer.framework in Frameworks */,
+				40E8A8B74E91BA9B5EB8C4DE /* Pods_Grocer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		361B507A0C2201033D643D20 /* Frameworks */ = {
+		076AF2D1895115C894F987F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D855231AA6BA1EA3EBD6C81D /* Pods_Grocer.framework */,
+				D397EB6EACCA959DBC7A0984 /* Pods_Grocer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -95,8 +93,8 @@
 		A308CA5CEE22BC129D406D20 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */,
-				AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */,
+				D02D7B887E479ABE3426DBC2 /* Pods-Grocer.debug.xcconfig */,
+				736BD281898D8C61B5FF3719 /* Pods-Grocer.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -107,7 +105,7 @@
 				DCE925D4246094A000EA6A5E /* Grocer */,
 				DCE925D3246094A000EA6A5E /* Products */,
 				A308CA5CEE22BC129D406D20 /* Pods */,
-				361B507A0C2201033D643D20 /* Frameworks */,
+				076AF2D1895115C894F987F2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				DCE9260F24621B3C00EA6A5E /* StoreCell.swift */,
-				DCE926222462A80E00EA6A5E /* RecipeCell.swift */,
 				DCE926242462A84B00EA6A5E /* IngredientCell.swift */,
 				DCE926262462A86C00EA6A5E /* AddIngredientCell.swift */,
 				DCE9262A2462A8AB00EA6A5E /* ExpandedGroceryListCell.swift */,
@@ -249,11 +246,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DCE925E9246094A200EA6A5E /* Build configuration list for PBXNativeTarget "Grocer" */;
 			buildPhases = (
-				A76BFFA162C3B11CF48660A1 /* [CP] Check Pods Manifest.lock */,
+				33C5C7DC3724EF545882D05D /* [CP] Check Pods Manifest.lock */,
 				DCE925CE246094A000EA6A5E /* Sources */,
 				DCE925CF246094A000EA6A5E /* Frameworks */,
 				DCE925D0246094A000EA6A5E /* Resources */,
-				7D10E0AF4B42F1D187528F53 /* [CP] Embed Pods Frameworks */,
+				15FABE1C1B98ACF8E629935B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -311,7 +308,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7D10E0AF4B42F1D187528F53 /* [CP] Embed Pods Frameworks */ = {
+		15FABE1C1B98ACF8E629935B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -328,7 +325,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grocer/Pods-Grocer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A76BFFA162C3B11CF48660A1 /* [CP] Check Pods Manifest.lock */ = {
+		33C5C7DC3724EF545882D05D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,7 +372,6 @@
 				DCE926002460963400EA6A5E /* StoreListTableViewController.swift in Sources */,
 				DCE925F8246095E800EA6A5E /* Store.swift in Sources */,
 				DCE925D8246094A000EA6A5E /* SceneDelegate.swift in Sources */,
-				DCE926232462A80E00EA6A5E /* RecipeCell.swift in Sources */,
 				DCE9261024621B3C00EA6A5E /* StoreCell.swift in Sources */,
 				DCE926022460965100EA6A5E /* StoreMapViewController.swift in Sources */,
 				DCE925FA246095F300EA6A5E /* Location.swift in Sources */,
@@ -514,7 +510,7 @@
 		};
 		DCE925EA246094A200EA6A5E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E8099FA3EB72170A67589A9 /* Pods-Grocer.debug.xcconfig */;
+			baseConfigurationReference = D02D7B887E479ABE3426DBC2 /* Pods-Grocer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -534,7 +530,7 @@
 		};
 		DCE925EB246094A200EA6A5E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD7CE33CF1BE48E8D662F709 /* Pods-Grocer.release.xcconfig */;
+			baseConfigurationReference = 736BD281898D8C61B5FF3719 /* Pods-Grocer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
